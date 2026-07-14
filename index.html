@@ -1,172 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CreatorHub — All-in-One Creator Marketplace</title>
-<meta name="description" content="Discover AI tools, buy premium digital products, open your own store, and grow your creator business. One platform for everything.">
+<meta name="description" content="Discover AI tools, premium digital products, and join the creator marketplace. Built by Osama.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M22 44V22l16 10.5L22 44z' fill='white'/%3E%3Cpath d='M38 24l-16 10 16 10V24z' fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="logo" onclick="App.navigate('home');return false;">
-      <div class="logo-icon">⚡</div>
+    <a href="#" class="logo-link" onclick="App.navTo('home');return false;">
+      <div class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
       CreatorHub
+      <span class="owner-badge">by Osama</span>
     </a>
     <div class="nav-links" id="navLinks">
-      <a data-page="home" class="active" onclick="App.navigate('home')">🏠 Home</a>
-      <a data-page="marketplace" onclick="App.navigate('marketplace')">🏪 Marketplace</a>
-      <a data-page="videos" onclick="App.navigate('videos')">🎬 Videos</a>
-      <a data-page="ads" onclick="App.navigate('ads')">📢 Advertise</a>
-      <a data-page="discussions" onclick="App.navigate('discussions')">💬 Discuss</a>
-      <a data-page="roadmap" onclick="App.navigate('roadmap')">🗺 Roadmap</a>
-      <a data-page="faq" onclick="App.navigate('faq')">❓ FAQ</a>
+      <a data-page="home" class="active" onclick="App.navTo('home')">Home</a>
+      <a data-page="marketplace" onclick="App.navTo('marketplace')">Marketplace</a>
+      <a data-page="videos" onclick="App.navTo('videos')">Videos</a>
+      <a data-page="ads" onclick="App.navTo('ads')">Advertise</a>
+      <a data-page="discussions" onclick="App.navTo('discussions')">Discuss</a>
+      <a data-page="roadmap" onclick="App.navTo('roadmap')">Roadmap</a>
+      <a data-page="faq" onclick="App.navTo('faq')">FAQ</a>
     </div>
-    <div class="nav-auth" id="authUI">
-      <button class="btn btn-sm btn-outline" onclick="App.openModal('loginModal')">Sign In</button>
-      <button class="btn btn-sm btn-primary" onclick="App.openModal('registerModal')">Get Started</button>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" onclick="App.toggleTheme()" title="Toggle theme"></button>
+      <span id="authUI">
+        <button class="btn btn-sm btn-ghost" onclick="openById('loginModal')">Sign In</button>
+        <button class="btn btn-sm btn-primary" onclick="openById('registerModal')">Get Started</button>
+      </span>
+      <button class="mobile-toggle" id="mobileToggle">☰</button>
     </div>
-    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
   </div>
 </nav>
 
-<!-- ============================================================
-     TOAST CONTAINER
-     ============================================================ -->
-<div id="toastContainer" style="position:fixed;bottom:20px;right:20px;z-index:300;"></div>
+<!-- TOASTS -->
+<div class="toast-stack" id="toasts"></div>
 
 <!-- ============================================================
-     PAGE: HOME
+     HOME
      ============================================================ -->
-<section class="page-section active" id="page-home">
+<section class="page-panel active" id="page-home">
 
-  <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge"><span class="hero-badge-dot"></span> 7 Tools · 9 Products · Global Marketplace</div>
-    <h1>One Platform for <span>Every Creator</span> to Build, Sell & Grow</h1>
-    <p>Discover AI tools, buy premium products, open your own storefront, earn commissions, and reach buyers worldwide — all from a single marketplace.</p>
-    <div class="hero-actions">
-      <button class="btn btn-primary" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Explore Tools →</button>
-      <button class="btn btn-secondary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Browse Products →</button>
-      <button class="btn btn-outline" onclick="App.navigate('marketplace')">Open Your Store</button>
+    <div class="hero-chip"><span class="hero-chip-dot"></span>7 Tools · 9 Products · 1 Marketplace</div>
+    <h1>One Platform for <span class="grad">Every Creator</span> to Build, Sell & Grow</h1>
+    <p class="hero-desc">Discover AI tools, buy premium products, open your store, earn commissions, and reach buyers worldwide — from a single marketplace.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary btn-lg" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Explore Tools</button>
+      <button class="btn btn-secondary btn-lg" onclick="document.getElementById('store').scrollIntoView({behavior:'smooth'})">Browse Products</button>
+      <button class="btn btn-ghost btn-lg" onclick="App.navTo('marketplace')">Open Your Store</button>
     </div>
+    <div class="hero-owner">A Project by <span>Osama</span> · Built for Creators Worldwide</div>
   </div>
 
   <!-- STATS -->
-  <div class="stats-bar" style="max-width:var(--max-width);margin:0 auto 50px;padding:0 20px;">
-    <div class="stat"><div class="stat-value">7</div><div class="stat-label">AI-Powered Tools</div></div>
-    <div class="stat"><div class="stat-value">9</div><div class="stat-label">Premium Products</div></div>
-    <div class="stat"><div class="stat-value">0%</div><div class="stat-label">Commission (Free Tier)</div></div>
-    <div class="stat"><div class="stat-value">85%</div><div class="stat-label">Your Cut (Pro Tier)</div></div>
+  <div class="stats-bar">
+    <div class="stat"><div class="num">7</div><div class="lbl">AI-Powered Tools</div></div>
+    <div class="stat"><div class="num">9</div><div class="lbl">Premium Products</div></div>
+    <div class="stat"><div class="num">0%</div><div class="lbl">Commission (Free Tier)</div></div>
+    <div class="stat"><div class="num">85%</div><div class="lbl">Your Cut (Pro Tier)</div></div>
   </div>
 
   <!-- TOOLS -->
   <div class="section" id="tools">
     <div class="section-header">
-      <div class="section-label">AI Tools Directory</div>
+      <div class="section-kicker">AI Tools Directory</div>
       <h2>Powerful Tools, One Dashboard</h2>
-      <p>Every tool you've built — accessible from one place. Hover for details, click to open. No rebuilding needed.</p>
+      <p class="sub">Every tool you've built — linked and discoverable. No rebuilding needed.</p>
     </div>
-    <div style="max-width:600px;margin:0 auto 24px;">
-      <input type="text" placeholder="🔍 Search tools..." id="toolsSearch" style="width:100%;padding:12px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text-primary);font-size:0.9rem;font-family:var(--font);">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search tools..." id="toolsSearch">
     </div>
-    <div class="grid-3" id="toolsGrid"></div>
-    <p id="toolsNoResults" style="text-align:center;color:var(--text-muted);margin-top:16px;display:none;">No tools match your search. Try a different keyword.</p>
+    <div class="grid-2" id="toolsGrid"></div>
   </div>
 
   <!-- PRODUCTS -->
-  <div class="section" id="products">
+  <div class="section" id="store">
     <div class="section-header">
-      <div class="section-label">Gumroad Storefront</div>
-      <h2>Premium Digital Products</h2>
-      <p>Marketing prompts, productivity templates, freelancer toolkits — every product, organized beautifully.</p>
+      <div class="section-kicker">Premium Store</div>
+      <h2>Digital Products for Creators</h2>
+      <p class="sub">Marketing prompts, productivity templates, freelancer toolkits — organized and ready.</p>
     </div>
-    <div style="max-width:600px;margin:0 auto 16px;">
-      <input type="text" placeholder="🔍 Search products..." id="productsSearch" style="width:100%;padding:12px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text-primary);font-size:0.9rem;font-family:var(--font);">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search products..." id="prodSearch">
     </div>
-    <div class="tabs" id="productTabs">
-      <button class="tab active" data-cat="all">All Products</button>
-      <button class="tab" data-cat="marketing">📧 AI Marketing</button>
-      <button class="tab" data-cat="productivity">📅 Productivity</button>
-      <button class="tab" data-cat="freelance">💼 Freelance</button>
-      <button class="tab" data-cat="bundles">📚 Bundles</button>
+    <div class="tabs" id="prodTabs">
+      <button class="tab active" data-cat="all">All</button>
+      <button class="tab" data-cat="marketing">AI Marketing</button>
+      <button class="tab" data-cat="productivity">Productivity</button>
+      <button class="tab" data-cat="freelance">Freelance</button>
+      <button class="tab" data-cat="bundles">Bundles</button>
     </div>
-    <div class="grid-4" id="productsGrid"></div>
-
-    <div class="info-box" style="margin-top:24px;">
-      <h4>🔄 Auto-Sync with Gumroad</h4>
-      <p>Products currently load from static data. To auto-sync whenever you add a product on Gumroad, integrate the <strong>Gumroad API</strong>: <code>GET https://api.gumroad.com/v2/products</code>. The data structure matches the API format — swap the static array for a <code>fetch()</code> call. See <code>sync-gumroad.js</code> for the Node.js migration script.</p>
-    </div>
+    <div class="grid-3" id="prodGrid"></div>
+    <div class="info-box"><h4>🔄 Auto-Sync with Gumroad</h4><p>Products load from static data. Integrate the <strong>Gumroad API</strong> for live auto-sync when you add products. Structure matches the API response format — swap for a <code>fetch()</code> call.</p></div>
   </div>
 
   <!-- TIERS -->
-  <div class="section" id="tiers">
+  <div class="section" id="pricing">
     <div class="section-header">
-      <div class="section-label">Pricing</div>
+      <div class="section-kicker">Pricing</div>
       <h2>Choose Your Tier</h2>
-      <p>Start free, upgrade when you grow. Transparent pricing, no hidden fees.</p>
+      <p class="sub">Start free, upgrade when you grow. Transparent, no hidden fees.</p>
     </div>
     <div class="tier-grid" id="tiersGrid"></div>
   </div>
-
-  <!-- AD BANNER SAMPLE -->
-  <div style="max-width:var(--max-width);margin:0 auto;padding:0 20px 50px;">
-    <div class="ad-banner premium">
-      <div class="ad-label">AD</div>
-      <div class="ad-content">
-        <h4>⭐ Your Ad Here — Reach Thousands of Creators</h4>
-        <p>Promote your product, service, or brand on CreatorHub. Starting at $10/month.</p>
-      </div>
-      <div class="ad-price">$10/mo</div>
-      <button class="btn btn-sm btn-primary" onclick="App.navigate('ads')">Get Started</button>
-    </div>
-  </div>
-
 </section>
 
 <!-- ============================================================
-     PAGE: MARKETPLACE
+     MARKETPLACE
      ============================================================ -->
-<section class="page-section" id="page-marketplace">
+<section class="page-panel" id="page-marketplace">
   <div class="hero" style="padding-top:60px;">
-    <h1>The <span>Creator Marketplace</span></h1>
-    <p>Discover stores from creators worldwide. List your own products and earn. Free tier available — no risk.</p>
+    <h1>The <span class="grad">Creator Marketplace</span></h1>
+    <p class="hero-desc">Discover stores from creators worldwide. List your products and earn — free tier available.</p>
   </div>
-  <div class="section">
-    <div class="section-header"><h2>Featured Sellers</h2></div>
-    <div class="grid-3" id="marketplaceGrid"></div>
-  </div>
+  <div class="section"><div class="section-header"><h2>Featured Sellers</h2></div><div class="grid-2" id="marketGrid"></div></div>
   <div class="section" style="padding-top:0;">
-    <div class="section-header"><h2>Apply to Sell</h2><p>Fill the form and we'll review your store within 48 hours.</p></div>
-    <div style="max-width:560px;margin:0 auto;">
-      <div class="card" id="sellerFormCard">
-        <form id="sellerForm" onsubmit="return false;">
-          <div class="form-row">
-            <div class="form-group"><label>Your Name</label><input type="text" placeholder="Osama" required id="sellerName"></div>
-            <div class="form-group"><label>Store Name</label><input type="text" placeholder="My Store" required id="storeName"></div>
-          </div>
-          <div class="form-group"><label>Gumroad / Product URL</label><input type="url" placeholder="https://yourname.gumroad.com" required id="sellerUrl"></div>
-          <div class="form-group"><label>What do you sell?</label><input type="text" placeholder="e.g. Notion templates, AI prompts, design assets" required id="sellerType"></div>
-          <div class="form-group">
-            <label>Choose Tier</label>
-            <select required id="sellerTier">
-              <option value="">Select a tier...</option>
-              <option value="free">🌱 Starter — Free (0% commission, 3 products)</option>
-              <option value="pro">⭐ Pro — $15/mo (10% commission, unlimited)</option>
-              <option value="exclusive">👑 Exclusive — $49/mo (5% commission, white-label)</option>
-            </select>
-          </div>
-          <button class="btn btn-primary" style="width:100%;justify-content:center;" id="sellerFormBtn">Apply Now →</button>
+    <div class="section-header"><h2>Apply to Sell</h2><p class="sub">We'll review your store within 48 hours.</p></div>
+    <div style="max-width:520px;margin:0 auto;">
+      <div class="tool-card" style="flex-direction:column;">
+        <form id="sellerForm" onsubmit="return false;" style="width:100%;">
+          <div class="form-row"><div class="form-group"><label>Your Name</label><input placeholder="Osama" required></div><div class="form-group"><label>Store Name</label><input placeholder="My Store" required></div></div>
+          <div class="form-group"><label>Gumroad / Product URL</label><input type="url" placeholder="https://yourname.gumroad.com" required></div>
+          <div class="form-group"><label>What do you sell?</label><input placeholder="e.g. templates, AI prompts, design assets" required></div>
+          <div class="form-group"><label>Choose Tier</label><select required><option value="">Select...</option><option>Starter — Free (0% commission)</option><option>Pro — $15/mo (10% fee)</option><option>Exclusive — $49/mo (5% fee)</option></select></div>
+          <button class="btn btn-primary" style="width:100%;" id="sellerBtn">Apply Now</button>
         </form>
-        <div class="form-success-box" id="sellerSuccess">
-          <div class="icon">🎉</div>
-          <h4>Application Submitted!</h4>
-          <p>We'll review your store and get back within 48 hours. Your products appear on CreatorHub once approved.</p>
+        <div class="empty-state" id="sellerOk" style="display:none;">
+          <div class="icon-box icon-box-lg icon-green" style="margin:0 auto 16px;">✓</div>
+          <h3>Application Submitted!</h3>
+          <p>We'll review your store and get back within 48 hours.</p>
         </div>
       </div>
     </div>
@@ -174,195 +144,133 @@
 </section>
 
 <!-- ============================================================
-     PAGE: VIDEOS
+     VIDEOS
      ============================================================ -->
-<section class="page-section" id="page-videos">
+<section class="page-panel" id="page-videos">
   <div class="hero" style="padding-top:60px;">
-    <h1>🎬 <span>Video Content</span></h1>
-    <p>Product demos, tutorials, and premium content. Free videos for everyone, premium content for Pro+ members.</p>
+    <h1>Video <span class="grad">Content</span></h1>
+    <p class="hero-desc">Product demos, tutorials, and premium content. Free for everyone, premium for Pro+ members.</p>
   </div>
-  <div class="section">
-    <div class="video-grid" id="videosGrid"></div>
-    <div class="info-box" style="margin-top:24px;">
-      <h4>📹 Want to feature your video?</h4>
-      <p>Pro and Exclusive sellers can upload product demos and tutorials. Premium videos are locked to paid subscribers. Third-party advertisers can also buy pre-roll ad placements on video content.</p>
-    </div>
-  </div>
+  <div class="section"><div class="grid-3" id="videosGrid"></div><div class="info-box"><h4>📹 Want your video featured?</h4><p>Pro and Exclusive sellers can upload product demos. Premium videos are locked to subscribers. Third-party advertisers can buy pre-roll placements.</p></div></div>
 </section>
 
 <!-- ============================================================
-     PAGE: ADVERTISE
+     ADVERTISE
      ============================================================ -->
-<section class="page-section" id="page-ads">
+<section class="page-panel" id="page-ads">
   <div class="hero" style="padding-top:60px;">
-    <h1>📢 <span>Advertise</span> on CreatorHub</h1>
-    <p>Reach creators, freelancers, and buyers. Promote your product, brand, or service with targeted ad placements.</p>
+    <h1>Advertise on <span class="grad">CreatorHub</span></h1>
+    <p class="hero-desc">Reach creators, freelancers, and buyers. Promote your product, brand, or service.</p>
   </div>
-  <div class="section">
-    <div class="grid-4" id="adsGrid"></div>
-    <div class="info-box" style="margin-top:24px;">
-      <h4>🔄 Who can advertise?</h4>
-      <p><strong>Anyone.</strong> Your products, other creators' products, movie promotions, app installs, SaaS tools, online courses — if it's relevant to creators and buyers, it fits. Each ad slot is reviewed before going live to maintain quality.</p>
-    </div>
-  </div>
+  <div class="section"><div class="grid-3" id="adsGrid"></div><div class="info-box"><h4>🔄 Who can advertise?</h4><p><strong>Anyone.</strong> Your products, other creators, movie promos, app installs, SaaS tools — if it's relevant to creators, it fits. Each ad is reviewed before going live.</p></div></div>
 </section>
 
 <!-- ============================================================
-     PAGE: DISCUSSIONS
+     DISCUSSIONS
      ============================================================ -->
-<section class="page-section" id="page-discussions">
+<section class="page-panel" id="page-discussions">
   <div class="hero" style="padding-top:60px;">
-    <h1>💬 <span>Community Discussions</span></h1>
-    <p>Ask questions, share wins, request features, and connect with fellow creators.</p>
+    <h1>Community <span class="grad">Discussions</span></h1>
+    <p class="hero-desc">Ask questions, share wins, request features, connect with fellow creators.</p>
   </div>
-  <div class="section">
-    <div style="margin-bottom:16px;" id="discussionActions"></div>
-    <div id="discussionsGrid"></div>
-    <div class="info-box" style="margin-top:16px;">
-      <h4>🚩 Community Guidelines</h4>
-      <p>Be respectful. No spam. No hate speech. Reports are reviewed within 24 hours. Repeated violations result in account suspension. This is a space for creators to help creators.</p>
-    </div>
-  </div>
+  <div class="section"><div style="margin-bottom:16px;"><button class="btn btn-primary btn-sm" onclick="App.toast('Discussion creation coming soon','info')">+ New Discussion</button></div><div id="discGrid"></div></div>
 </section>
 
 <!-- ============================================================
-     PAGE: ROADMAP
+     ROADMAP
      ============================================================ -->
-<section class="page-section" id="page-roadmap">
+<section class="page-panel" id="page-roadmap">
   <div class="hero" style="padding-top:60px;">
-    <h1>🗺 <span>Product Roadmap</span></h1>
-    <p>Where we're headed — from Pakistan-first to global creator economy platform.</p>
+    <h1>Product <span class="grad">Roadmap</span></h1>
+    <p class="hero-desc">Four-phase plan: Pakistan-first to global creator economy platform.</p>
   </div>
-  <div class="section">
-    <div class="grid-3" id="roadmapGrid"></div>
-  </div>
+  <div class="section"><div class="grid-2" id="rmGrid"></div></div>
 </section>
 
 <!-- ============================================================
-     PAGE: FAQ
+     FAQ
      ============================================================ -->
-<section class="page-section" id="page-faq">
+<section class="page-panel" id="page-faq">
   <div class="hero" style="padding-top:60px;">
-    <h1>❓ <span>Frequently Asked</span> Questions</h1>
-    <p>Everything you need to know about CreatorHub.</p>
+    <h1>Frequently <span class="grad">Asked</span> Questions</h1>
+    <p class="hero-desc">Everything you need to know.</p>
   </div>
-  <div class="section">
-    <div class="grid-3" id="faqGrid"></div>
-  </div>
+  <div class="section"><div class="grid-2" id="faqGrid"></div></div>
 </section>
 
 <!-- ============================================================
-     PAGE: DASHBOARD (authenticated)
+     DASHBOARD
      ============================================================ -->
-<section class="page-section" id="page-dashboard">
-  <div class="hero" style="padding-top:60px;">
-    <h1>📊 <span>Dashboard</span></h1>
-    <p>Your CreatorHub overview. Analytics, earnings, and product performance.</p>
-  </div>
-  <div class="section" id="dashboardContent">
-    <p style="text-align:center;color:var(--text-muted);">Sign in to view your dashboard.</p>
-  </div>
+<section class="page-panel" id="page-dashboard">
+  <div class="hero" style="padding-top:60px;"><h1>Your <span class="grad">Dashboard</span></h1><p class="hero-desc">Overview, analytics, and earnings.</p></div>
+  <div class="section" id="dashContent"><div class="empty-state"><h3>Sign in to view your dashboard</h3><p>Track products, views, and earnings from one place.</p></div></div>
 </section>
 
 <!-- ============================================================
-     PAGE: MY STORE (authenticated)
+     MY STORE
      ============================================================ -->
-<section class="page-section" id="page-my-store">
-  <div class="hero" style="padding-top:60px;">
-    <h1>🏪 <span>My Store</span></h1>
-    <p>Manage your products, view reviews, and track performance.</p>
-  </div>
-  <div class="section" id="myStoreContent">
-    <p style="text-align:center;color:var(--text-muted);">Sign in to manage your store.</p>
-  </div>
+<section class="page-panel" id="page-my-store">
+  <div class="hero" style="padding-top:60px;"><h1>My <span class="grad">Store</span></h1><p class="hero-desc">Manage products, reviews, and performance.</p></div>
+  <div class="section" id="storeContent"><div class="empty-state"><h3>Sign in to manage your store</h3><p>View products, reviews, and analytics for your storefront.</p></div></div>
 </section>
 
 <!-- ============================================================
-     PAGE: SETTINGS (authenticated)
+     SETTINGS
      ============================================================ -->
-<section class="page-section" id="page-settings">
-  <div class="hero" style="padding-top:60px;">
-    <h1>⚙️ <span>Account Settings</span></h1>
-    <p>Manage your profile, security, and preferences.</p>
-  </div>
-  <div class="section" id="settingsContent" style="max-width:560px;">
-    <p style="text-align:center;color:var(--text-muted);">Sign in to access settings.</p>
-  </div>
+<section class="page-panel" id="page-settings">
+  <div class="hero" style="padding-top:60px;"><h1>Account <span class="grad">Settings</span></h1><p class="hero-desc">Manage your profile and security.</p></div>
+  <div class="section" style="max-width:520px;" id="setContent"><div class="empty-state"><h3>Sign in to access settings</h3><p>Update your profile, password, and preferences.</p></div></div>
 </section>
 
 <!-- ============================================================
-     MODALS
+     LOGIN MODAL
      ============================================================ -->
-
-<!-- LOGIN MODAL -->
 <div class="modal-overlay" id="loginModal">
   <div class="modal">
     <h2>Welcome Back</h2>
-    <p>Sign in to your CreatorHub account</p>
-
-    <div class="social-login">
-      <button class="social-btn google" onclick="App.login('google')">🔵 Continue with Google</button>
-      <button class="social-btn github" onclick="App.login('github')">🐙 Continue with GitHub</button>
-      <button class="social-btn twitter" onclick="App.login('twitter')">🐦 Continue with Twitter</button>
-      <button class="social-btn facebook" onclick="App.login('facebook')">📘 Continue with Facebook</button>
+    <p class="sub">Sign in to your CreatorHub account</p>
+    <div class="social-list">
+      <button class="social-btn" onclick="App.login('google')" style="border-color:rgba(234,67,53,0.3);">🔵 Continue with Google</button>
+      <button class="social-btn" onclick="App.login('github')">🐙 Continue with GitHub</button>
+      <button class="social-btn" onclick="App.login('twitter')" style="border-color:rgba(29,161,242,0.3);">🐦 Continue with Twitter</button>
+      <button class="social-btn" onclick="App.login('facebook')" style="border-color:rgba(66,103,178,0.3);">📘 Continue with Facebook</button>
     </div>
-
-    <div class="divider-line">or sign in with email</div>
-
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" placeholder="you@example.com" id="loginEmail">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" placeholder="Enter password" id="loginPass">
-    </div>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:10px;" id="loginEmailBtn">Sign In</button>
+    <div class="or-divider">or sign in with email</div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com" id="loginEmail"></div>
+    <div class="form-group"><label>Password</label><input type="password" placeholder="Enter password" id="loginPass"></div>
+    <button class="btn btn-primary" style="width:100%;margin-bottom:10px;" id="loginBtn">Sign In</button>
     <div style="display:flex;justify-content:space-between;font-size:0.8rem;">
-      <a style="color:var(--accent);cursor:pointer;" onclick="App.showToast('📧 Password reset link sent to your email', 'info')">Forgot password?</a>
-      <a style="color:var(--accent);cursor:pointer;" onclick="App.closeModal('loginModal');App.openModal('registerModal');">Create account</a>
+      <a style="color:var(--accent-light);cursor:pointer;" onclick="App.toast('Reset link sent','info')">Forgot password?</a>
+      <a style="color:var(--accent-light);cursor:pointer;" onclick="closeById('loginModal');openById('registerModal');">Create account</a>
     </div>
   </div>
 </div>
 
-<!-- REGISTER MODAL -->
+<!-- ============================================================
+     REGISTER MODAL
+     ============================================================ -->
 <div class="modal-overlay" id="registerModal">
   <div class="modal">
     <h2>Create Your Account</h2>
-    <p>Join the creator marketplace — free to start.</p>
-
-    <div class="social-login">
-      <button class="social-btn google" onclick="App.login('google')">🔵 Continue with Google</button>
-      <button class="social-btn github" onclick="App.login('github')">🐙 Continue with GitHub</button>
+    <p class="sub">Join the marketplace — free to start.</p>
+    <div class="social-list">
+      <button class="social-btn" onclick="App.login('google')">🔵 Continue with Google</button>
+      <button class="social-btn" onclick="App.login('github')">🐙 Continue with GitHub</button>
     </div>
-
-    <div class="divider-line">or register with email</div>
-
-    <div class="form-group">
-      <label>Full Name</label>
-      <input type="text" placeholder="Your name" id="regName">
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" placeholder="you@example.com" id="regEmail">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" placeholder="Min 8 characters" id="regPass">
-    </div>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;" id="registerBtn">Create Free Account</button>
-    <p style="text-align:center;font-size:0.78rem;color:var(--text-muted);margin-top:10px;">
-      By signing up, you agree to our Terms and Privacy Policy.
-    </p>
+    <div class="or-divider">or register with email</div>
+    <div class="form-group"><label>Full Name</label><input placeholder="Your name" id="regName"></div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com" id="regEmail"></div>
+    <div class="form-group"><label>Password</label><input type="password" placeholder="Min 8 characters" id="regPass"></div>
+    <button class="btn btn-primary" style="width:100%;" id="regBtn">Create Free Account</button>
+    <p style="text-align:center;font-size:0.75rem;color:var(--text-muted);margin-top:10px;">By signing up, you agree to our Terms and Privacy Policy.</p>
   </div>
 </div>
 
-<!-- REVIEWS MODAL -->
+<!-- ============================================================
+     REVIEWS MODAL
+     ============================================================ -->
 <div class="modal-overlay" id="reviewModal">
-  <div class="modal wide">
-    <div id="reviewContent"></div>
-    <button class="btn btn-secondary btn-sm" style="margin-top:16px;" onclick="App.closeModal('reviewModal')">Close</button>
-  </div>
+  <div class="modal wide"><div id="reviewBody"></div><button class="btn btn-secondary btn-sm" style="margin-top:12px;" onclick="closeById('reviewModal')">Close</button></div>
 </div>
 
 <!-- ============================================================
@@ -370,23 +278,19 @@
      ============================================================ -->
 <footer class="footer">
   <div class="footer-links">
-    <a onclick="App.navigate('home')">Home</a>
-    <a onclick="App.navigate('marketplace')">Marketplace</a>
-    <a onclick="App.navigate('ads')">Advertise</a>
-    <a onclick="App.navigate('videos')">Videos</a>
-    <a onclick="App.navigate('discussions')">Community</a>
-    <a onclick="App.navigate('roadmap')">Roadmap</a>
-    <a onclick="App.navigate('faq')">FAQ</a>
+    <a onclick="App.navTo('home')">Home</a>
+    <a onclick="App.navTo('marketplace')">Marketplace</a>
+    <a onclick="App.navTo('ads')">Advertise</a>
+    <a onclick="App.navTo('videos')">Videos</a>
+    <a onclick="App.navTo('discussions')">Community</a>
+    <a onclick="App.navTo('roadmap')">Roadmap</a>
+    <a onclick="App.navTo('faq')">FAQ</a>
     <a href="https://bahijan4.gumroad.com" target="_blank">Gumroad</a>
   </div>
-  <p>© 2026 CreatorHub. Built for creators, by creators. | Terms · Privacy · Contact</p>
+  <p class="footer-credit">A Project by <span>Osama</span> · © 2026 CreatorHub · Terms · Privacy · Contact</p>
 </footer>
 
-<!-- ============================================================
-     SCRIPTS
-     ============================================================ -->
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
-
 </body>
 </html>
